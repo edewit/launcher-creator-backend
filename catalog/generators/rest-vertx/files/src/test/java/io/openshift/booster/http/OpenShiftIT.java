@@ -1,4 +1,4 @@
-package io.openshift.booster;
+package io.openshift.booster.http;
 
 import com.jayway.restassured.RestAssured;
 import java.net.MalformedURLException;
@@ -11,7 +11,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static com.jayway.restassured.RestAssured.get;
-import static io.openshift.booster.HttpApplication.template;
+import static io.openshift.booster.http.HttpApplication.template;
 import static org.hamcrest.core.IsEqual.equalTo;
 
 @RunWith(Arquillian.class)

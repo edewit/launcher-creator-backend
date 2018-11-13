@@ -18,7 +18,7 @@ export default class DatabaseCrudVertx extends BaseGenerator {
                 'artifactId': props.artifactId,
                 'version': props.version,
                 'env': {
-                    'MY_DATABASE_SERVICE_HOST': {
+                    'DB_HOST': {
                         'secret': props.secretName,
                         'key': 'uri'
                     },
@@ -38,9 +38,11 @@ export default class DatabaseCrudVertx extends BaseGenerator {
             await this.copy();
             await this.mergePoms(`merge/pom.${props.databaseType}.xml`);
             await this.transform('src/**/*.java', cases(props));
+
             // TODO Don't just blindly copy all files, we need to _patch_ some of
             // them instead (eg. pom.xml and arquillian.xml and Java code)
         }
+        extra['sourceMapping'] = { 'dbEndpoint': 'src/main/java/io/openshift/booster/database/CrudApplication.java' };
         return resources;
     }
 }
